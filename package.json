@@ -9,7 +9,8 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "enmap": "^5.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
