@@ -1,5 +1,5 @@
 module.exports = (client, message) => {
-  if(!message.content.startsWith(client.config.prefix) || message.author.bot) return
+  if(!message.channel.name != 'bot' ||!message.content.startsWith(client.config.prefix) || message.author.bot) return
   
   const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
