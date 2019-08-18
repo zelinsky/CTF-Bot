@@ -21,3 +21,9 @@ exports.run = (client, message, [mention, ...reason]) => {
     message.reply(`${member.user.username} was succesfully kicked.`)
   }).catch(console.error)
 }
+
+exports.help = {
+  name: "kick",
+  description: "Kicks a user.",
+  usage: "kick @user [reason]"
+};
