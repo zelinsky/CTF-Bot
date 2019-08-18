@@ -1,4 +1,4 @@
-const config = require('./config.json')
+const config = require('./config')
 const fs = require('fs')
 const Enmap = require('enmap')
 const Discord = require('discord.js')
@@ -27,4 +27,4 @@ fs.readdir("./commands/", (err, files) => {
   })
 })
 
-client.login(process.env.BOT_TOKEN)
+client.login(config.token)
