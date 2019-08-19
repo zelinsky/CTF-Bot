@@ -21,6 +21,10 @@ exports.run = (client, message, args) => {
 
 }
 
+exports.conf = {
+    permLevel: "Member"
+}
+
 exports.help = {
   name: "work",
   description: "Will assign you to be working on the CTF problem of the current channel. Will unassign you from CTF problem if already assigned. Must be used in a CTF Problem channel.",

@@ -21,8 +21,12 @@ exports.run = (client, message, args) => {
   }
 }
 
+exports.conf = {
+    permLevel: "Member"
+}
+
 exports.help = {
-  name: "help",
-  description: "Displays all commands.",
-  usage: "help [command]"
+    name: "help",
+    description: "Displays all commands.",
+    usage: "help [command]"
 };
