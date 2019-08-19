@@ -19,8 +19,9 @@ exports.run = async (client, message, [ctf, ...problems]) => {
     
     // For each channel of the category, delete the channel and corresponding role
     ctfcat.children.forEach(channel => {
-	if (channel.name !== 'general')
-	    message.guild.roles.find(role => role.name === `${ctfname}-${channel.name}`).delete().catch(console.error);
+	r = message.guild.roles.find(role => role.name === `${ctfname}-${channel.name}`)
+	if (r)
+	    r.delete().catch(console.error);
 	channel.delete().then(output += `- [channel]  ${channel.name}\n`).catch(console.error);
     });
 
