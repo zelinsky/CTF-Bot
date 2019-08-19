@@ -1,5 +1,12 @@
 exports.run = (client, message, [ctf, ...problems]) => {
 
+  const modRole = message.guild.roles.find(role => role.name === "Mod")
+  if (!modRole)
+    return console.log("The Mod role does not exist")
+
+  if (!message.member.roles.has(modRole.id))
+    return message.reply("You can't use this command.").catch(console.error)
+
   if (!ctf)
     return message.reply("You must specify a CTF to add problems to.").catch(console.error)
 
