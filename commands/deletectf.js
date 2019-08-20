@@ -31,6 +31,8 @@ exports.run = async (client, message, [ctf, ...problems]) => {
 };
 
 exports.conf = {
+    dm: false,
+    bot: true,
     permLevel: "Mod"
 };
 

@@ -9,9 +9,11 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "discord.js": "^11.5.1",
     "dotenv": "^8.1.0",
-    "enmap": "^5.1.2"
+    "enmap": "^5.1.2",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

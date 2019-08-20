@@ -1,8 +1,10 @@
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
     message.channel.send("pong!").catch(console.error);
 }
 
 exports.conf = {
+    dm: false,
+    bot: true,
     permLevel: "Member"
 }
 

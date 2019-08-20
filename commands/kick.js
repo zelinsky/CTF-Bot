@@ -1,4 +1,4 @@
-exports.run = (client, message, [mention, ...reason]) => {
+exports.run = async (client, message, [mention, ...reason]) => {
 
   if (message.mentions.members.size === 0)
     return message.reply("Please mention a user to kick")
@@ -17,6 +17,8 @@ exports.run = (client, message, [mention, ...reason]) => {
 }
 
 exports.conf = {
+    dm: false,
+    bot: true,
     permLevel: "Admin"
 }
 

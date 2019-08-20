@@ -1,5 +1,5 @@
 // Creates a category named `ctf` and channels under that category for each problem in `problems`
-// Also creates roles for each problem
+// Also creates roles for each problem to be used with !work
 
 exports.run = async (client, message, [ctf, ...problems]) => {
 
@@ -39,6 +39,8 @@ exports.run = async (client, message, [ctf, ...problems]) => {
 };
 
 exports.conf = {
+    dm: false,
+    bot: true,
     permLevel: "Mod"
 };
 

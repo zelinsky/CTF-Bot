@@ -1,4 +1,4 @@
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
   if (!args[0]) {
     commandNames = client.commands.keyArray()
     const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
@@ -22,6 +22,8 @@ exports.run = (client, message, args) => {
 }
 
 exports.conf = {
+    dm: false,
+    bot: true,
     permLevel: "Member"
 }
 
