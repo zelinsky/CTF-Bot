@@ -9,7 +9,8 @@ exports.conf = {
 }
 
 exports.help = {
-  name: "ping",
-  description: "Bot will reply with pong!",
-  usage: "ping"
+    name: "ping",
+    category: "Server", 
+    description: "Bot will reply with pong!",
+    usage: "ping"
 };

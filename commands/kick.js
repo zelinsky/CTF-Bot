@@ -23,7 +23,8 @@ exports.conf = {
 }
 
 exports.help = {
-  name: "kick",
-  description: "Kicks a user.",
-  usage: "kick @user [reason]"
+    name: "kick",
+    category: "Server",
+    description: "Kicks a user.",
+    usage: "kick @user [reason]"
 };

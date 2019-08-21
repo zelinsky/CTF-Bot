@@ -19,8 +19,8 @@ module.exports = async (client, message) => {
 
     // Check permissions for commands run in guild
     // Okay for not checking dm command as the only dm command right now is !join
-    if (message.member && message.member.highestRole.comparePositionTo(message.guild.roles.find(role => role.name === cmd.conf.permLevel)) < 0)
-	message.reply("You do not have permission to use this command.").catch(console.error);
+    if (message.member && client.config.perms.indexOf(message.member.highestRole.name) < client.config.perms.indexOf(cmd.conf.permLevel))
+	return message.reply("You do not have permission to use this command.").catch(console.error);
 
     client.logger.cmd(`[CMD] ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
     cmd.run(client, message, args)

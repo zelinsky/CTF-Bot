@@ -1,7 +1,7 @@
 exports.run = async (client, message, args) => {
 
     if(!message.channel.parent || message.channel.name === 'general')
-	return message.delete().then(message => message.reply("You must use the **work** command in a CTF problem channel!")).catch(console.error)
+	return message.delete().then(message => message.reply("You must use the **work** command in a CTF problem channel!").then(msg => msg.delete(client.config.timeout))).catch(console.error)
 
     const ctfname = message.channel.parent.name
     const problem = message.channel.name
@@ -30,6 +30,7 @@ exports.conf = {
 
 exports.help = {
     name: "work",
-    description: "Will assign you to be working on the CTF problem of the current channel. Will unassign you from CTF problem if already assigned. Must be used in a CTF Problem channel.",
+    category: "CTF Problem",
+    description: "Will (un)assign you to be working on the CTF problem of the current channel.",
     usage: "work"
 };

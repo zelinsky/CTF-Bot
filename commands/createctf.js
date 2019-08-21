@@ -46,6 +46,7 @@ exports.conf = {
 
 exports.help = {
     name: "createctf",
+    category: "CTF Mod",
     description: "Creates a category for the CTF including a general channel and channels for any specified problems. If CTF already exists, adds specified problems to CTF.",
     usage: "createctf ctf [...problems]"
 };

@@ -38,6 +38,7 @@ exports.conf = {
 
 exports.help = {
     name: "deletectf",
+    category: "CTF Mod",
     description: "Deletes CTF category and all channels under the category.",
     usage: "deletectf ctf"
 };
