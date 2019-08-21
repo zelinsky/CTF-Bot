@@ -1,26 +1,32 @@
+// Kicks the specified user from the server
 exports.run = async (client, message, [mention, ...reason]) => {
 
-  if (message.mentions.members.size === 0)
-    return message.reply("Please mention a user to kick")
+    // If no user was mentioned (with @), return with error message
+    if (message.mentions.members.size === 0)
+	return message.reply("Please mention a user to kick");
 
-  if (!message.guild.me.hasPermission("KICK_MEMBERS"))
-    return message.reply("")
+    // If bot doesn't have permission
+    if (!message.guild.me.hasPermission("KICK_MEMBERS"))
+	return message.reply("");
 
-  const kickMember = message.mentions.members.first()
+    // Get the first mentioned user
+    const kickMember = message.mentions.members.first();
 
-  if (!kickMember.kickable)
-    return message.reply("I can't kick this user. Sorry!")
+    // Check if user is kickable, return with error if not
+    if (!kickMember.kickable)
+	return message.reply("I can't kick this user. Sorry!");
 
-  kickMember.kick(reason.join(" ")).then(member => {
-    message.reply(`${member.user.username} was succesfully kicked.`)
-  }).catch(console.error)
-}
+    // Kick user with reason if given
+    kickMember.kick(reason.join(" ")).then(member => {
+	message.reply(`${member.user.username} was succesfully kicked.`);
+    }).catch(console.error);
+};
 
 exports.conf = {
     dm: false,
     bot: true,
     permLevel: "Admin"
-}
+};
 
 exports.help = {
     name: "kick",
