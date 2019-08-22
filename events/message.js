@@ -6,7 +6,7 @@ module.exports = async (client, message) => {
     
     // Checks if the bot was mentioned, with no message after it, returns help command.
     const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
-    if (message.content.match(prefixMention)) {
+    if (message.guild && message.content.match(prefixMention)) {
 	const botch = message.guild.channels.find(channel => channel.name === 'bot');
 	return message.reply(`Use \`${client.config.prefix}help\` in the ${botch} channel.`).catch(console.error);
     }
