@@ -6,10 +6,10 @@ exports.run = async (client, message, info) => {
 	return message.delete().then(message => message.reply("You must use the **done** command in a **CTF Problem Channel**!").then(msg => msg.delete(client.config.timeout))).catch(console.error)
 
     // If channel is already marked, unmark it, else mark it
-    if (message.channel.name.startsWith('✅')) 
+    if (message.channel.name.startsWith(client.config.flag)) 
 	message.channel.setName(message.channel.name.substring(1)).then(message.delete()).catch(console.error);
     else
-	message.channel.setName(`✅${message.channel.name}`).then(message.delete()).catch(console.error);
+	message.channel.setName(`${client.config.flag}${message.channel.name}`).then(message.delete()).catch(console.error);
 
 };
 
