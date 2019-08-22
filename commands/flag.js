@@ -10,9 +10,9 @@ exports.run = async (client, message, flags) => {
 	return message.reply("You must specify at least one flag.").catch(console.error);
 
     // For each flag, send message in #flags
+    const flagChannel = message.guild.channels.find(channel => channel.name === 'flags');
     flags.forEach(f => {
-	const flagChannel = message.guild.channels.find(channel => channel.name === 'flags');
-	const problem = channel.name.startsWith('✅') ? channel.name.substr(1) : channel.name
+	let problem = message.channel.name.startsWith('✅') ? message.channel.name.substr(1) : message.channel.name
 	flagChannel.send(`__**${message.member.displayName}**__ captured the flag \`${f}\` for **${problem}** of **${message.channel.parent.name}**!`);
 
     });
