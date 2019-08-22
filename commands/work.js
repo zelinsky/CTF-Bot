@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
 
     // Get ctf name and problem name based on channel
     const ctfname = message.channel.parent.name;
-    const problem = message.channel.name;
+    const problem = channel.name.startsWith('✅') ? channel.name.substr(1) : channel.name
 
     // Find role
     const newRole = message.guild.roles.find(role => role.name === `${ctfname}-${problem}`);

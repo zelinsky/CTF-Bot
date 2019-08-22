@@ -12,7 +12,8 @@ exports.run = async (client, message, flags) => {
     // For each flag, send message in #flags
     flags.forEach(f => {
 	const flagChannel = message.guild.channels.find(channel => channel.name === 'flags');
-	flagChannel.send(`__**${message.member.displayName}**__ captured the flag \`${f}\` for **${message.channel.name}** of **${message.channel.parent.name}**!`);
+	const problem = channel.name.startsWith('✅') ? channel.name.substr(1) : channel.name
+	flagChannel.send(`__**${message.member.displayName}**__ captured the flag \`${f}\` for **${problem}** of **${message.channel.parent.name}**!`);
 
     });
 };
@@ -26,6 +27,6 @@ exports.conf = {
 exports.help = {
     name: "flag",
     category: "CTF Problem",
-    description: "Declares you found the flag for the problem of the current channel.",
+    description: "Declares you found a flag for the problem of the current channel.",
     usage: "flag ctf{fl4g} [...flags]"
 };
