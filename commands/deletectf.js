@@ -15,20 +15,34 @@ exports.run = async (client, message, [ctf, ...problems]) => {
     if (!ctfcat)
 	return message.reply(`${ctfname} not found!`).catch(console.error);
 
-    let output = `- [category] ${ctfname}\n`;
-    
-    // For each channel of the category, delete the channel and corresponding role
-    ctfcat.children.forEach(channel => {
-	let name = channel.name.startsWith('✅') ? channel.name.substr(1) : channel.name
-	let r = message.guild.roles.find(role => role.name === `${ctfname}-${name}`)
-	if (r)
-	    r.delete().catch(console.error);
-	channel.delete().then(output += `- [channel]  ${name}\n`).catch(console.error);
-    });
+    const response = await client.awaitReply(message, `Are you sure you want to permanently delete ${ctfname}? This **CANNOT** be undone.`);
 
-    // Delete the category and send output
-    ctfcat.delete().catch(console.error);
-    message.channel.send(output, {code: 'diff'});
+    // If they respond with y or yes, continue.
+    if (["y", "yes"].includes(response)) {
+
+
+	let output = `- [category] ${ctfname}\n`;
+	
+	// For each channel of the category, delete the channel and corresponding role
+	ctfcat.children.forEach(channel => {
+	    let name = channel.name.startsWith('✅') ? channel.name.substr(1) : channel.name
+	    let r = message.guild.roles.find(role => role.name === `${ctfname}-${name}`)
+	    if (r)
+		r.delete().catch(console.error);
+	    channel.delete().then(output += `- [channel]  ${name}\n`).catch(console.error);
+	});
+
+	// Delete the category and send output
+	ctfcat.delete().catch(console.error);
+	message.channel.send(output, {code: 'diff'});
+	
+    } else {
+	// If they respond with n or no, we inform them that the action has been cancelled.
+	if (["n","no","cancel"].includes(response)) {
+	    message.reply("Action cancelled.");
+	}
+    }
+
 };
 
 exports.conf = {
