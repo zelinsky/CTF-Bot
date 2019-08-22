@@ -12,7 +12,7 @@ exports.run = async (client, message, flags) => {
     // For each flag, send message in #flags
     const flagChannel = message.guild.channels.find(channel => channel.name === 'flags');
     flags.forEach(f => {
-	let problem = message.channel.name.startsWith(client.config.flag) ? message.channel.name.substr(1) : message.channel.name
+	let problem = message.channel.name.startsWith(client.config.flag) ? message.channel.name.substr(client.config.flag.length) : message.channel.name
 	flagChannel.send(`__**${message.member.displayName}**__ captured the flag \`${f}\` for **${problem}** of **${message.channel.parent.name}**!`);
 
     });

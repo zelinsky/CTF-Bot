@@ -7,7 +7,7 @@ exports.run = async (client, message, info) => {
 
     // If channel is already marked, unmark it, else mark it
     if (message.channel.name.startsWith(client.config.flag)) 
-	message.channel.setName(message.channel.name.substring(1)).then(message.delete()).catch(console.error);
+	message.channel.setName(message.channel.name.substring(client.config.flag.length)).then(message.delete()).catch(console.error);
     else
 	message.channel.setName(`${client.config.flag}${message.channel.name}`).then(message.delete()).catch(console.error);
 
