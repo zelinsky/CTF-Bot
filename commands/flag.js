@@ -12,6 +12,7 @@ exports.run = async (client, message, flags) => {
     // For each flag, send message in #flags
     const flagChannel = message.guild.channels.find(channel => channel.name === 'flags');
     flags.forEach(f => {
+	// Remove emoji prefix if present
 	let problem = message.channel.name.startsWith(client.config.flag) ? message.channel.name.substr(client.config.flag.length) : message.channel.name
 	flagChannel.send(`__**${message.channel.parent.name.toUpperCase()}**__ - **${message.member.displayName}** captured the flag \`${f}\` for **${problem}**!`);
     });

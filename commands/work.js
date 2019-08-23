@@ -7,6 +7,8 @@ exports.run = async (client, message, args) => {
 
     // Get ctf name and problem name based on channel
     const ctfname = message.channel.parent.name;
+
+    // Remove emoji prefix if present
     const problem = message.channel.name.startsWith(client.config.flag) ? message.channel.name.substr(client.config.flag.length) : message.channel.name
 
     // Find role

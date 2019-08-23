@@ -25,6 +25,7 @@ exports.run = async (client, message, [ctf, ...problems]) => {
 	
 	// For each channel of the category, delete the channel and corresponding role
 	ctfcat.children.forEach(channel => {
+	    // Remove emoji prefix if present
 	    let name = channel.name.startsWith(client.config.flag) ? channel.name.substr(client.config.flag.length) : channel.name
 	    let r = message.guild.roles.find(role => role.name === `${ctfname}-${name}`)
 	    if (r)
@@ -48,7 +49,7 @@ exports.run = async (client, message, [ctf, ...problems]) => {
 exports.conf = {
     dm: false,
     bot: true,
-    permLevel: "Mod"
+    permLevel: "Admin"
 };
 
 exports.help = {
