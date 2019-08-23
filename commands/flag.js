@@ -13,8 +13,7 @@ exports.run = async (client, message, flags) => {
     const flagChannel = message.guild.channels.find(channel => channel.name === 'flags');
     flags.forEach(f => {
 	let problem = message.channel.name.startsWith(client.config.flag) ? message.channel.name.substr(client.config.flag.length) : message.channel.name
-	flagChannel.send(`__**${message.member.displayName}**__ captured the flag \`${f}\` for **${problem}** of **${message.channel.parent.name}**!`);
-
+	flagChannel.send(`**__${message.channel.parent.name.toUpperCase()}**__ - **${message.member.displayName}** captured the flag \`${f}\` for **${problem}**!`);
     });
 };
 

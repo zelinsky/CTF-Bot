@@ -15,7 +15,7 @@ exports.run = async (client, message, [ctf, ...problems]) => {
     if (!ctfcat)
 	return message.reply(`${ctfname} not found!`).catch(console.error);
 
-    const response = await client.awaitReply(message, `Are you sure you want to permanently delete ${ctfname}? This **CANNOT** be undone.`);
+    const response = await client.awaitReply(message, `Are you sure you want to permanently delete __**${ctfname}**__?`);
 
     // If they respond with y or yes, continue.
     if (["y", "yes"].includes(response)) {
