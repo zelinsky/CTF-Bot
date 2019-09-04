@@ -1,23 +1,23 @@
 ```asciidoc
 = Intro = 
-```
-Welcome to the **UDCTF** Discord server! 
+```Welcome to the **UDCTF** Discord!
+Please read below for details on how to use this server.
 
 ```asciidoc
 = Suggestions =
 ```**1.** If you want to change your username for this server, right click on the server icon, and select **Change Nickname**.
-**2.** To ensure you receive notification for upcoming CTFs, right click on the server icon, and select **Notification Setting**. Add #announcements to **Notification Overrides**, and check **all**.
+**2.** To ensure you receive reminder notifications for upcoming CTFs, right click on the server icon, and select **Notification Settings**. Add #announcements to **Notification Overrides**, and check **all**.  Check **mentions** instead to only receive notifications for when a CTF starts.
 
 ```asciidoc
 = Server Categories/Channels =
-```
-__**General Channels**__
+```__**General Channels**__
 **Info -** Contains useful information about using the server.
-**Welcome -** Welcomes new members!
-**Announcements -** Where CTFs and other important announcements will be posted. __**Make sure you receive notifications for this channel!**__
-**Flags -** Captured flags will be posted here!
+**Welcome -** Welcomes new members.
+**Schedule -** Upcoming CTFs are listed here.
+**Announcements -** Where CTF reminders and other important announcements will be posted. __**Make sure you receive notifications for this channel!**__
+**Flags -** Captured flags will be posted here.
 **Bot -** Use *most* bot commands here, more on that below.
-**General-Chat -** Chat about stuff not pertaining to any particular CTF here!
+**General-Chat -** Chat about stuff not pertaining to any particular CTF here.
 
 __**CTF Categories**__
 All categories will pertain to the CTF that the category is named after. A **CTF Category** will contain a **general** channel, used for chatting about the CTF, followed by **CTF Problem Channels**, channels for each problem of the CTF.
@@ -26,11 +26,11 @@ Useful information for a CTF, such as links, login information, and start and en
 
 ```asciidoc
 = CTF-Bot =
-```
-@[CB] CTF-Bot#1180  is our very own Discord bot!
+```@[CB] CTF-Bot#1180  is our very own Discord bot!
 
 __**CTF Problem Commands**__ - *Use these commands in **CTF Problem Channels**!*
-`!flag` - Declare that you found the flag for this problem.
+`!done` - Mark the problem as done.
+`!flag` - Declare that you found a flag for this problem.
 `!info` - Set the channel topic with information about this problem.
 `!work` - Assign yourself to this problem.
 
@@ -39,8 +39,7 @@ Type `!help` to list all available commands.
 
 ```asciidoc
 = Links =
-```
-__**General**__
+```__**General**__
 CTFTime: https://ctftime.org/
 
 __**Resources**__
@@ -48,5 +47,4 @@ CTF-Course: https://zelinsky.github.io/CTF-Course/
 
 ```asciidoc
 = Become a Member =
-```
-Please read the information above, and then when you're ready, send `!join UDCTF{insertmemberflaghere}` in a DM to @[CB] CTF-Bot#1180 to get access to the rest of the server!
+```Please read the information above, and then when you're ready, send `!join UDCTF{insertmemberflaghere}` in a DM to @[CB] CTF-Bot#1180 to get access to the rest of the server!

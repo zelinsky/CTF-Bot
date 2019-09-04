@@ -34,8 +34,11 @@ exports.run = async (client, message, [ctf, ...problems]) => {
 	});
     }
 
-    // Send output
-    message.channel.send(output, {code: 'diff'});
+    if (output) { // Send output
+	message.channel.send(output, {code: 'diff'});
+    } else { // No channels created
+	return;
+    }
 };
 
 exports.conf = {
@@ -45,8 +48,8 @@ exports.conf = {
 };
 
 exports.help = {
-    name: "createctf",
+    name: "make",
     category: "CTF Mod",
     description: "Creates a category for the CTF including a general channel and channels for any specified problems. If CTF already exists, adds specified problems to CTF.",
-    usage: "createctf ctf [...problems]"
+    usage: "make ctf [...problems]"
 };
