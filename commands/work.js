@@ -18,8 +18,8 @@ exports.run = async (client, message, args) => {
     if (!newRole)
 	return console.log(`The ${ctfname}-${problem} role does not exist`);
 
-    // If the user already has a role for this ctf, remove it
-    const prevRole = message.member.roles.find(role => role.name.startsWith(ctfname));
+    // If the user already has a ctf problem role (contains -), remove it
+    const prevRole = message.member.roles.find(role => role.name.includes('-'));
     if (prevRole)
 	message.member.removeRole(prevRole).catch(console.error);
 
