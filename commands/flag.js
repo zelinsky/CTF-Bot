@@ -7,15 +7,15 @@ exports.run = async (client, message, flags) => {
 
     // Return with error if not flags specified
     if (flags.length === 0)
-	return message.reply("You must specify at least one flag.").catch(console.error);
+	return message.reply("You must specify a flag.").catch(console.error);
 
     // For each flag, send message in #flags
-    const flagChannel = message.guild.channels.find(channel => channel.name === 'flags');
-    flags.forEach(f => {
-	// Remove emoji prefix if present
-	let problem = message.channel.name.startsWith(client.config.flag) ? message.channel.name.substr(client.config.flag.length) : message.channel.name
-	flagChannel.send(`__**${message.channel.parent.name.toUpperCase()}**__ - **${message.member.displayName}** captured the flag \`${f}\` for **${problem}**!`);
-    });
+    const flagChannel = message.guild.channels.find(channel => channel.name === 'flags' && !channel.parent);
+    
+    // Remove emoji prefix if present
+    let problem = message.channel.name.startsWith(client.config.flag) ? message.channel.name.substr(client.config.flag.length) : message.channel.name;
+    let f = flags.join('');
+    flagChannel.send(`__**${message.channel.parent.name.toUpperCase()}**__ - **${message.member.displayName}** captured the flag \`${f}\` for **${problem}**!`);
 };
 
 exports.conf = {
@@ -28,5 +28,5 @@ exports.help = {
     name: "flag",
     category: "CTF Problem",
     description: "Declares you found a flag for the problem of the current channel.",
-    usage: "flag ctf{fl4g} [...flags]"
+    usage: "flag ctf{fl4g}"
 };
