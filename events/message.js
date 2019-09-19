@@ -22,8 +22,9 @@ module.exports = async (client, message) => {
     // Return if command not found
     if (!cmd) return;
 
-    // Continue if command is a DM command, command is supposed to be used outside of the bot channel, or if command is used in bot channel.
-    if (!cmd.conf.dm && cmd.conf.bot && message.channel.name !== 'bot') return;
+    // Continue if command is a DM command in a DM channel, command is supposed to be used outside of the bot channel, or if command is used in bot channel.
+    if (cmd.conf.bot && message.channel.name !== 'bot') return;
+    if (!cmd.conf.dm && message.channel.type === 'dm') return;
 
     // Check permissions for commands run in guild
     // Okay for not checking dm command as the only dm command right now is !join and can be used by @everyone
