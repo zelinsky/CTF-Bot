@@ -16,11 +16,26 @@ exports.run = async (client, message, [ctf, ...problems]) => {
     
     // If ctf category doesn't exist, create it and add a general channel to it
     if (!ctfcat) {
-	ctfcat = await message.guild.createChannel(ctfname, {type:'category'}).then(category => {
-	    message.guild.createChannel('general', {type:'text', parent:category}).catch(console.error);
-	    return category;
-	}).catch(console.error);
-	output += `+ [category] ${ctfname}\n+ [channel]  general\n`;
+
+	// Require additional confirmation
+	const response = await client.awaitReply(message, `Are you sure you want to create the new ctf category __**${ctfname}**__?`);
+
+	// If they respond with y or yes, continue.
+	if (["y", "yes"].includes(response)) {
+
+	    ctfcat = await message.guild.createChannel(ctfname, {type:'category'}).then(category => {
+		message.guild.createChannel('general', {type:'text', parent:category}).catch(console.error);
+		return category;
+	    }).catch(console.error);
+	    output += `+ [category] ${ctfname}\n+ [channel]  general\n`;
+	    
+	} else {
+	    // If they respond with n or no, we inform them that the action has been cancelled.
+	    if (["n","no","cancel"].includes(response)) {
+		message.reply("Action cancelled.");
+	    }
+	    return;
+	}
     }
 
     // If problem names are specified after ctf name, create a channel and role for each problem (if it  doesn't already exist) under the ctf category
