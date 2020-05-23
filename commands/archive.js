@@ -82,6 +82,6 @@ exports.conf = {
 exports.help = {
   name: "archive",
   category: "Server", 
-  description: "Archives the given channels to a webpage",
+  description: "Archives a category to a json file",
   usage: "archive category-name"
 };
