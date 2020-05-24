@@ -13,10 +13,11 @@ exports.run = async (client, message, [ctf]) => {
   return message.reply(`${ctfname} not found!`).catch(console.error);
 
   var working_obj = {};
-  var final_obj = {};
-  var test_arr = [];
+  var export_obj = {};
 
   var file_path = ctfname + ".json";
+
+  var num_children = ctfcat.children.size;
 
   ctfcat.children.forEach(channel => {
     const all_messages_array = lots_of_messages_getter(channel);
@@ -27,20 +28,23 @@ exports.run = async (client, message, [ctf]) => {
       for (const msg of messages.reverse()) {
         working_obj = add_elts_to_obj(working_obj, msg.author.username, msg.content, msg.id, channel.name);
       }
-      var fs = require('fs');
       export_obj = JSON.stringify(working_obj); //convert it back to json
+      var fs = require('fs');
 
+      fs.writeFile(file_path, export_obj, 'utf8', function(err){
+        if(err) pass;
+        console.log(num_children);
+        num_children -= 1;
+        if (num_children == 0) {
+          message.channel.send(`Here's all the data for \`${ctfname}\``, { files: [file_path] });
+        }
+      });     
       /* Eventually you will need this :)
       * https://discord.com/developers/docs/reference#snowflakes
       */
-
-      fs.writeFile(`${file_path}`, export_obj, 'utf8', function(err){
-        if(err) throw err;
-      });
+      
     });
-  });
-
-  message.channel.send(`Here's all the data for \`${ctfname}\``, { files: [file_path] });
+  })
 };
 
 function add_elts_to_obj(obj, author, content, id, channel_name) {
