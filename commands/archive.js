@@ -20,11 +20,16 @@ exports.run = async (client, message, [ctf]) => {
   var num_children = ctfcat.children.size;
 
   ctfcat.children.forEach(channel => {
-    const all_messages_array = lots_of_messages_getter(channel);
+    if (channel.lastMessageID == null) {
+      num_children -= 1;
+      return;
+    }
+    var all_the_messages = lots_of_messages_getter(channel);
 
     working_obj[channel.name] = {}
-    
-    all_messages_array.then(function(messages) { 
+
+    // const all_messages_array = lots_of_messages_getter(channel);
+    all_the_messages.then(function(messages) { 
       for (const msg of messages.reverse()) {
         working_obj = add_elts_to_obj(working_obj, msg.author.username, msg.content, msg.id, channel.name);
       }
@@ -33,7 +38,6 @@ exports.run = async (client, message, [ctf]) => {
 
       fs.writeFile(file_path, export_obj, 'utf8', function(err){
         if(err) pass;
-        console.log(num_children);
         num_children -= 1;
         if (num_children == 0) {
           message.channel.send(`Here's all the data for \`${ctfname}\``, { files: [file_path] });
@@ -44,7 +48,7 @@ exports.run = async (client, message, [ctf]) => {
       */
       
     });
-  })
+  });
 };
 
 function add_elts_to_obj(obj, author, content, id, channel_name) {
