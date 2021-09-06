@@ -31,7 +31,13 @@ exports.run = async (client, message, [ctf]) => {
     // const all_messages_array = lots_of_messages_getter(channel);
     all_the_messages.then(function(messages) { 
       for (const msg of messages.reverse()) {
-        working_obj = add_elts_to_obj(working_obj, msg.author.username, msg.content, msg.id, channel.name);
+        var content;
+        try{
+          content = msg.attachments.first().url;
+        } catch {
+          content = msg.content;
+        }
+        working_obj = add_elts_to_obj(working_obj, msg.author.username, content, msg.id, channel.name);
       }
       export_obj = JSON.stringify(working_obj); //convert it back to json
       var fs = require('fs');
